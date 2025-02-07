@@ -69,4 +69,18 @@ RSpec.describe Shelter do
         expect(shelter.over_capacity?).to eq(true)
       end
     end
+
+    describe '#adopt' do
+      it 'use pop to adopt a pet' do # just gives the one that is causing capacity issues lol
+        shelter = Shelter.new('Denver Animal Shelter', 3)
+        shelter.add_pet('Salem')
+        shelter.add_pet('Beethoven')
+        shelter.add_pet('Spot')
+        shelter.add_pet('Jonesy')
+
+        expect(shelter.adopt).to eq('Jonesy')
+        expect(shelter.over_capacity?).to eq(false)
+        expect(shelter.pets).to eq(['Salem', 'Beethoven', 'Spot'])
+      end
+    end
 end

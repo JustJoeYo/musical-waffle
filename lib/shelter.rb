@@ -18,4 +18,8 @@ class Shelter
     @pets.length > @capacity
   end
 
+  def adopt
+    @pets.pop
+  end
+
 end
