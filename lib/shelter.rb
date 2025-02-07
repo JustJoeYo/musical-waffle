@@ -19,7 +19,8 @@ class Shelter
   end
 
   def adopt
-    @pets.pop
+    # @pets.pop # could make it take the dog from the back of the line instead of the front
+    @pets.shift
   end
 
 end

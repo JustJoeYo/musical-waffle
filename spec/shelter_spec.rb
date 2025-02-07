@@ -78,9 +78,9 @@ RSpec.describe Shelter do
         shelter.add_pet('Spot')
         shelter.add_pet('Jonesy')
 
-        expect(shelter.adopt).to eq('Jonesy')
+        expect(shelter.adopt).to eq('Salem')
         expect(shelter.over_capacity?).to eq(false)
-        expect(shelter.pets).to eq(['Salem', 'Beethoven', 'Spot'])
+        expect(shelter.pets).to eq(['Beethoven', 'Spot', 'Jonesy'])
       end
     end
 end
