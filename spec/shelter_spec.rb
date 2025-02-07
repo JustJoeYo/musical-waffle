@@ -1,26 +1,27 @@
 require 'rspec'
 require './lib/shelter'
+require 'pry'
 
 RSpec.describe Shelter do
 
   # Iteration 1
   describe '#initialize' do
-    xit 'is a Shelter' do
+    it 'is a Shelter' do
       shelter = Shelter.new('Denver Animal Shelter', 5)
       expect(shelter).to be_a(Shelter)
     end
 
-    xit 'can read the name' do
+    it 'can read the name' do
       shelter = Shelter.new('Denver Animal Shelter', 5)
       expect(shelter.name).to eq('Denver Animal Shelter')
     end
 
-    xit 'can read the capacity' do
+    it 'can read the capacity' do
       shelter = Shelter.new('Denver Animal Shelter', 5)
       expect(shelter.capacity).to eq(5)
     end
 
-    xit 'has no pets by default' do
+    it 'has no pets by default' do
       shelter = Shelter.new('Denver Animal Shelter', 5)
       expect(shelter.pets).to eq []
     end
@@ -28,7 +29,7 @@ RSpec.describe Shelter do
 
   # Iteration 2
   describe '#add_pet' do
-    xit 'returns a list of pets' do
+    it 'returns a list of pets' do
       shelter = Shelter.new('Denver Animal Shelter', 5)
       shelter.add_pet('Salem')
       shelter.add_pet('Beethoven')
@@ -40,7 +41,7 @@ RSpec.describe Shelter do
   end 
 
   describe '#call_pets' do
-      xit 'returns a list of names with exclamation points appended' do
+      it 'returns a list of names with exclamation points appended' do
         shelter = Shelter.new('Denver Animal Shelter', 5)
         shelter.add_pet('Salem')
         shelter.add_pet('Beethoven')
@@ -48,6 +49,24 @@ RSpec.describe Shelter do
         shelter.add_pet('Jonesy')
 
         expect(shelter.call_pets).to eq(['Salem!', 'Beethoven!', 'Spot!', 'Jonesy!'])
+      end
+    end
+
+    describe '#over_capacity?' do
+      it 'checks capacity == false' do # great naming right?
+        shelter = Shelter.new('Denver Animal Shelter', 5)
+        shelter.add_pet('Salem')
+        shelter.add_pet('Beethoven')
+
+        expect(shelter.over_capacity?).to eq(false)
+      end
+
+      it 'checks capacity == true' do # great naming right?
+        shelter = Shelter.new('Denver Animal Shelter', 1)
+        shelter.add_pet('Spot')
+        shelter.add_pet('Jonesy')
+
+        expect(shelter.over_capacity?).to eq(true)
       end
     end
 end
